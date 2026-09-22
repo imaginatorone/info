@@ -42,7 +42,7 @@ Concrete limits: final authored audio is still absent; no simulated audio reacti
 
 ## Publish
 
-GitHub Pages builds `main` with the repository workflow and serves the site at https://imaginatorone.github.io/info/.
+`main` is on https://github.com/imaginatorone/info. GitHub Pages is set to build with the repository workflow and the intended address is https://imaginatorone.github.io/info/. The first Actions run did not start: GitHub reported that the account is locked because of a billing issue, so the live address is not serving this build yet.
 
 ## M2 - persistent world + routing
 
