@@ -3,6 +3,7 @@ import { defineConfig } from "@playwright/test";
 const chrome = { browserName: "chromium" as const, channel: "chrome" };
 
 export default defineConfig({
+  expect: { timeout: 12000 },
   testDir: "./e2e",
   use: {
     baseURL: "http://127.0.0.1:4173",

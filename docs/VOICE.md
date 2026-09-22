@@ -13,7 +13,7 @@ The site should sound like a person made it for other people.
 
 - Direct, calm, specific, slightly informal.
 - Short fragments are fine when they feel natural.
-- Do not sound like a product launch, agency case study, startup landing page, or generated portfolio.
+- Do not sound like a product launch, agency case study, startup landing page, or generic portfolio.
 - Do not explain the aesthetic to the visitor. Let the site demonstrate it.
 - Do not invent grand claims about the person behind the site.
 

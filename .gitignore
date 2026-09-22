@@ -27,3 +27,11 @@ dist-ssr
 test-results/
 playwright-report/
 
+
+# Local working instructions
+.agents/
+.claude/
+.codex/
+prompts/
+AGENTS.md
+CLAUDE.md

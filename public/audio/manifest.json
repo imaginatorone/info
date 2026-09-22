@@ -1,0 +1,15 @@
+{
+  "ambience": {
+    "src": null,
+    "gain": 0.25,
+    "loopStart": 0,
+    "loopEnd": null,
+    "trimSilence": true,
+    "crossfadeSeconds": 0.08
+  },
+  "press": { "src": null, "gain": 0.58 },
+  "hover": { "src": null, "gain": 0.18 },
+  "reveal": { "src": null, "gain": 0.48 },
+  "route": { "src": null, "gain": 0.34 },
+  "toggle": { "src": null, "gain": 0.22 }
+}

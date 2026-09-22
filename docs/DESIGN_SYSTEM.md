@@ -30,3 +30,13 @@ Glitch only marks state change, impact, navigation, or a deliberate failure/reco
 ## Responsive rule
 
 Preserve concept, not pixel-for-pixel layout. Density, cell size, post-processing, and motion amplitude may adapt while hierarchy and identity remain intact.
+
+## Character material
+
+`src/content/identity-points.json` contains sampled ink geometry from the supplied
+hands-together character drawing, the same pose used in the SoundCloud avatar.
+Local contrast sampling removes the photographed screen/paper background while
+preserving the uneven hair, eyes, mask and collar. Each point stores normalized
+x/y and ink strength. The renderer blends these samples with its existing field,
+including partial reconstruction, depth, fragmentation and dissolution. No image
+plane, profile card, screenshot UI, or reference-image lettering is rendered.
