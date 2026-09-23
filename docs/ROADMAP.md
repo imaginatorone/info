@@ -62,6 +62,10 @@ Status: on-site listening implemented and checked locally. A full procedural sou
 
 `sound` does not load SoundCloud until the visitor asks. The ASCII transport lists the imaginatorone tracks and supports play, pause, skip, and seek. It follows the site mute and volume. The original player can be opened on the same page. Audio still starts only from a gesture.
 
+Verified 2026-09-24: the player now belongs to the persistent shell. Changing routes keeps the same SoundCloud iframe and playback session, with a compact player on other pages. Closing the compact player pauses playback without losing the queue. Widget teardown tolerates a detached iframe, fixing the blank-site crash when leaving Sound. Transport animation follows playback and respects reduced motion.
+
+Validation: typecheck, lint, 8 unit tests, production build and 38 desktop/mobile browser tests passed. After the final mobile layout adjustment, 6 focused player/reduced-motion tests passed again. Real SoundCloud checks loaded 12 tracks at 1440x900 and 390x844, verified mouse/touch playback, route continuity, pause, seek, next track, mute, language switching and closing the compact player with no console/page errors. The production build under `/info/` also passed the real-player check. Mobile validation remains browser emulation, not physical-device testing.
+
 ## M5 - polish
 
 Adaptive quality governor, reduced-motion path, accessibility, Playwright visual QA, loading strategy, metadata, deployment, analytics/privacy decision, and final copy.

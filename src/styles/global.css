@@ -779,3 +779,186 @@ button {
     font-size: 11px;
   }
 }
+
+.player-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 8;
+  overflow-y: auto;
+  width: 100%;
+  max-width: none;
+  height: 100svh;
+  padding-bottom: 150px;
+  pointer-events: auto;
+}
+.player-stage .ascii-player {
+  width: min(650px, 100%);
+}
+.player-stage [hidden],
+.mini-player[hidden] {
+  display: none;
+}
+.soundcloud-engine {
+  position: fixed;
+  top: -600px;
+  left: -1200px;
+  width: 650px;
+  height: 450px;
+  opacity: 0;
+  pointer-events: none;
+  border: 0;
+}
+.soundcloud-native {
+  position: fixed;
+  z-index: 29;
+  right: 25px;
+  top: 90px;
+  width: min(410px, 90vw);
+  height: 340px;
+  border: 1px solid #7d8ba944;
+  box-shadow: 0 15px 70px #000;
+}
+.mini-player {
+  position: fixed;
+  right: 28px;
+  bottom: 92px;
+  z-index: 28;
+  width: 340px;
+  padding: 14px 18px 8px;
+  background: #090d10ee;
+  border: 1px solid #9bb3c72b;
+  box-shadow: 0 12px 36px #0005;
+  pointer-events: auto;
+  animation: player-arrive 0.3s ease-out;
+}
+.mini-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font: 11px monospace;
+  color: #a9b9c9;
+}
+.mini-heading a {
+  padding: 12px 0;
+  min-height: 44px;
+  text-decoration: none;
+}
+.mini-heading button {
+  min-height: 44px;
+  min-width: 44px;
+  background: none;
+  color: inherit;
+  border: 0;
+  cursor: pointer;
+}
+.mini-player .ascii-player {
+  padding-top: 0;
+}
+.mini-player .transport-title {
+  font-size: 12px;
+  gap: 10px;
+}
+.mini-player .transport-title > :last-child {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mini-player .ascii-wave {
+  height: 34px;
+  font-size: 11px;
+  letter-spacing: 0;
+}
+.mini-player .transport-controls {
+  gap: 8px;
+}
+.mini-player .seek-glyphs {
+  letter-spacing: 0;
+}
+.mini-player .integration-note:empty {
+  display: none;
+}
+.ascii-wave span {
+  display: inline-block;
+  transform-origin: bottom;
+}
+.ascii-player[data-playing="true"] .ascii-wave span {
+  animation: transport-tide 1.8s ease-in-out infinite alternate;
+}
+@keyframes transport-tide {
+  from {
+    transform: scaleY(0.65);
+  }
+  to {
+    transform: scaleY(1.2);
+  }
+}
+@keyframes player-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 700px) {
+  .mini-player {
+    right: 16px;
+    bottom: 120px;
+    width: min(340px, calc(100vw - 32px));
+  }
+  .player-stage {
+    padding: 100px 24px 175px;
+  }
+  .soundcloud-native {
+    right: 5vw;
+    top: 110px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mini-player,
+  .ascii-player[data-playing="true"] .ascii-wave span {
+    animation: none;
+  }
+}
+
+.player-stage {
+  height: calc(100svh - 96px);
+  min-height: 0;
+  bottom: 96px;
+  padding-bottom: 36px;
+  grid-template-columns: minmax(0, 1fr);
+  background: linear-gradient(90deg, #07090ae8, #07090a99 43%, transparent 70%);
+}
+.ascii-player {
+  min-width: 0;
+}
+.transport-title > :last-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.track-list button {
+  grid-template-columns: 24px minmax(0, 1fr) 36px;
+}
+.track-list button > :nth-child(2) {
+  overflow-wrap: anywhere;
+}
+.track-time {
+  white-space: nowrap;
+}
+@media (max-width: 700px) {
+  .player-stage {
+    height: calc(100svh - 134px);
+    bottom: 134px;
+    padding-bottom: 24px;
+    background: #07090a9c;
+  }
+  .player-stage .ascii-player {
+    width: 100%;
+  }
+  .ascii-wave span {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}

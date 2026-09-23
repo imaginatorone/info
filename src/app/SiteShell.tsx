@@ -8,6 +8,7 @@ import {
 import { animate, AnimatePresence, motion, MotionConfig } from "motion/react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { SceneSurface } from "../components/SceneSurface";
+import { SoundPlayer } from "../components/SoundPlayer";
 import { AudioControl } from "../components/AudioControl";
 import { useIdleGuide } from "../components/useIdleGuide";
 import { useLocale } from "../content/locale";
@@ -215,6 +216,7 @@ export function SiteShell() {
           </motion.button>
         </div>
         {entered && <AudioControl audio={audio} />}
+        {revealed && <SoundPlayer audio={audio} active={routeIndex === 3} />}
         {intro >= 1 && (
           <div className="locale-control" role="group" aria-label={t.language}>
             {(["en", "ru"] as const).map((value) => (

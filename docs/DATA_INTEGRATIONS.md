@@ -17,6 +17,8 @@ Use a site-owned visual list/player surface. Resolve embeds lazily through Sound
 
 The confirmed profile is https://soundcloud.com/imaginatorone (SoundCloud user 1415829702). Playback uses the official Widget API, loaded only after the visitor asks to load tracks. The site owns the transport and track list; the original widget remains available as a fallback. The corner mute/volume control also updates the widget.
 
+The shell owns one persistent player and iframe. Routes change only its presentation: full transport and queue on Sound, compact transport elsewhere. Navigation must not destroy the playback window. Closing the compact view pauses playback and retains the queue. The offscreen widget keeps nonzero dimensions so its internal canvas can initialize. SoundCloud availability and track playback restrictions remain controlled by SoundCloud.
+
 ## Social
 
 Telegram: https://t.me/imaginatorone

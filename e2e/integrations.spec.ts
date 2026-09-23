@@ -83,6 +83,24 @@ test("SoundCloud loads on request and custom transport follows widget and master
   await expect(
     page.getByRole("button", { name: "Pause", exact: true }),
   ).toBeVisible();
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  const frame = await page.locator("iframe").elementHandle();
+  for (const route of ["about", "links", "home"]) {
+    await page.getByRole("link", { name: route, exact: true }).click();
+    await expect(page.locator(`[data-route="${route}"]`)).toBeVisible();
+    await expect(page.locator(".mini-player")).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: "Pause", exact: true }),
+    ).toBeVisible();
+    expect(
+      await frame?.evaluate(
+        (node) => node === document.querySelector("iframe"),
+      ),
+    ).toBe(true);
+  }
+  await page.getByRole("link", { name: "sound", exact: true }).click();
+  await expect(page.getByRole("button", { name: /Test track/ })).toBeVisible();
   await page.getByRole("button", { name: "Mute sound", exact: true }).click();
   await expect
     .poll(() =>
@@ -94,6 +112,17 @@ test("SoundCloud loads on request and custom transport follows widget and master
     )
     .toBe(0);
   const seek = page.getByRole("slider", { name: "Track position" });
+  const box = await seek.boundingBox();
+  await page.mouse.click(box!.x + box!.width * 0.5, box!.y + box!.height / 2);
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () =>
+          (window as unknown as { __player: { position: number } }).__player
+            .position,
+      ),
+    )
+    .toBeGreaterThan(80000);
   await seek.focus();
   await page.keyboard.press("End");
   await expect
@@ -112,4 +141,11 @@ test("SoundCloud loads on request and custom transport follows widget and master
   await expect(
     page.getByRole("link", { name: "sound", exact: true }),
   ).toBeVisible();
+  await page.getByRole("link", { name: "home", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Остановить и скрыть", exact: true })
+    .click();
+  await expect(page.locator(".mini-player")).toBeHidden();
+  await expect(page.getByRole("navigation")).toBeVisible();
+  expect(errors).toEqual([]);
 });
